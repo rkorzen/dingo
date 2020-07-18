@@ -16,34 +16,8 @@ Including another URLconf
 # dingo/urls.py
 from django.contrib import admin
 from django.urls import path
-from django.http import HttpResponse
 
-
-def math(request):
-    return HttpResponse("Tu będzie matma")
-
-
-def add(request, a, b):
-    a, b = int(a), int(b)
-    return HttpResponse(a + b)
-
-
-def sub(request, a, b):
-    a, b = int(a), int(b)
-    return HttpResponse(a - b)
-
-
-def mul(request, a, b):
-    a, b = int(a), int(b)
-    return HttpResponse(a * b)
-
-
-def div(request, a, b):
-    a, b = int(a), int(b)
-    if b == 0:
-        return HttpResponse("Nie dziel przez 0")
-    return HttpResponse(a / b)
-
+from maths.views import math, add, sub, mul, div
 
 urlpatterns = [
     path('admin/', admin.site.urls),
