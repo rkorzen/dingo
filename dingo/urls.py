@@ -13,12 +13,43 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+# dingo/urls.py
 from django.contrib import admin
-from django.http import HttpResponse
 from django.urls import path
+from django.http import HttpResponse
+
+
+def math(request):
+    return HttpResponse("Tu będzie matma")
+
+
+def add(request, a, b):
+    a, b = int(a), int(b)
+    return HttpResponse(a + b)
+
+
+def sub(request, a, b):
+    a, b = int(a), int(b)
+    return HttpResponse(a - b)
+
+
+def mul(request, a, b):
+    a, b = int(a), int(b)
+    return HttpResponse(a * b)
+
+
+def div(request, a, b):
+    a, b = int(a), int(b)
+    if b == 0:
+        return HttpResponse("Nie dziel przez 0")
+    return HttpResponse(a / b)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('maths/', lambda request: HttpResponse("Tu będzie matma")),
-    path('maths/add/<int:a>/<b>', lambda request, a, b: HttpResponse(a + int(b))),
+    path('maths/', math),
+    path('maths/add/<int:a>/<int:b>', add),
+    path('maths/sub/<int:a>/<int:b>', sub),
+    path('maths/mul/<int:a>/<int:b>', mul),
+    path('maths/div/<int:a>/<int:b>', div),
 ]
