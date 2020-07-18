@@ -20,5 +20,5 @@ from django.urls import path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('maths/', lambda request: HttpResponse("Tu będzie matma")),
-    path('maths/add/<a>/<b>', lambda request, a, b: HttpResponse(a + b)),
+    path('maths/add/<int:a>/<b>', lambda request, a, b: HttpResponse(a + int(b))),
 ]
