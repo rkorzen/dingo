@@ -1,7 +1,7 @@
 # maths/views.py
 from django.http import HttpResponse
 from django.shortcuts import render
-
+from django.contrib import messages
 
 def math(request):
     return HttpResponse("Tu będzie matma")
@@ -39,8 +39,10 @@ def mul(request, a, b):
 
 def div(request, a, b):
     if b == 0:
-        return HttpResponse("Nie dziel przez 0")
-    wynik = a / b
+        wynik = "Error"
+        messages.add_message(request, messages.ERROR, "Dzielenie przez zero!!")
+    else:
+        wynik = a / b
     c = {"a": a, "b": b, "operacja": "/", "wynik": wynik, "title": "dzielenie"}
     return render(
         request=request,
