@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{% block title %}Maths{% endblock %}</title>
 </head>
 <body>
-Wynik operacji {{ a }} {{ operacja }} {{ b }} wynosi {{ wynik }}
+To jest część stała szablonu głównego
+{% block content %}
+    To jest blok kodu. W innych szablonach możemy go nadpisać
+{% endblock %}
 </body>
 </html>
