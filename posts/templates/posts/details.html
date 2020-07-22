@@ -1,0 +1,12 @@
+{% extends "maths/main.html" %}
+
+{% block title %}Post{% endblock %}
+
+{% block content %}
+    <h1>{{ post.title }}</h1>
+    <h2>{{ post.author.nick }} | {{ post.created }}</h2>
+    <p>
+        {{ post.content }}
+    </p>
+    <a href="{% url "posts:list" %}">back</a>
+{% endblock %}
