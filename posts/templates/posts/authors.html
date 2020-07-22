@@ -8,4 +8,14 @@
             <li><a href="{% url "posts:author" a.id %}">{{ a.nick }}</a></li>
         {% endfor %}
     </ul>
+
+    <div>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Dodaj">
+        </form>
+
+
+    </div>
 {% endblock %}

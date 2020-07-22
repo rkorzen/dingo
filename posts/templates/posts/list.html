@@ -3,9 +3,20 @@
 {% block title %}Posty{% endblock %}
 
 {% block content %}
-    <ul>
-        {% for p in posts %}
-            <li><a href="{% url "posts:details" p.id %}">{{ p.title }}</a></li>
-        {% endfor %}
-    </ul>
+    <div>
+        <ul>
+            {% for p in posts %}
+                <li><a href="{% url "posts:details" p.id %}">{{ p.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Dodaj">
+        </form>
+
+    </div>
+
 {% endblock %}
