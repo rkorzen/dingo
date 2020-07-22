@@ -12,12 +12,7 @@
 
     <form method="post">
         {% csrf_token %}
-        <label for="value">value: </label>
-        <input type="text" name="value" id="value">
-        <br>
-        <label for="error">error: </label>
-        <input type="text" name="error" id="value">
-        <br>
+        {{ form.as_table }}
         <input type="submit" value="go">
     </form>
 
