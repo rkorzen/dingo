@@ -1,6 +1,6 @@
 from django.urls import path
 
-from maths.views import math, add, sub, mul, div, maths_list, math_details
+from maths.views import math, add, sub, mul, div, maths_list, math_details, results_list
 
 app_name="maths"
 
@@ -12,4 +12,6 @@ urlpatterns = [
     path('div/<int:a>/<int:b>', div),
     path('histories/', maths_list, name="list"),
     path('histories/<int:id>', math_details, name="details"),
+    path('results/', results_list, name="results"),
+
 ]

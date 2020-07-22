@@ -3,7 +3,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib import messages
 
-from maths.models import Math
+from maths.models import Math, Result
+
 
 def math(request):
     return HttpResponse("Tu będzie matma")
@@ -69,3 +70,40 @@ def math_details(request, id):
         template_name="maths/details.html",
         context={"math": math}
     )
+
+
+def results_list(request):
+   if request.method == "POST":
+       value = request.POST['value'] or None
+       error = request.POST['error'] or None
+       if value and error:
+           messages.add_message(
+               request,
+               messages.ERROR,
+               "Błąd! Podano jednocześnie value i error. Podaj tylko jedną z tych wartości"
+           )
+       elif value or error:
+
+           Result.objects.get_or_create(
+               value=float(value),
+               error=error
+           )
+           messages.add_message(
+               request,
+               messages.SUCCESS,
+               "Utworzono nowy Result!!"
+           )
+
+       else:
+           messages.add_message(
+               request,
+               messages.ERROR,
+               "Błąd! Nie podano wartości!!"
+           )
+
+   results = Result.objects.all()
+   return render(
+       request=request,
+       template_name="maths/results.html",
+       context={"results": results}
+   )
