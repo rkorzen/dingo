@@ -1,4 +1,6 @@
 from django.test import TestCase, Client
+
+from maths.forms import ResultForm
 from maths.models import Math, Result
 
 
@@ -28,6 +30,19 @@ class MathViewsTest(TestCase):
         self.assertEqual(len(response.context["maths"]), 1)
         self.assertIn('<li><a href="/maths/histories/1">id:1, a=20, b=30, op=sub</a></li>', response.content.decode())
 
+
+class ResultFormTest(TestCase):
+
+    def test_result_save_correct_data(self):
+        data = {"value": 200}
+        self.assertEqual(len(Result.objects.all()), 0)
+        form = ResultForm(data=data)
+        self.assertTrue(form.is_valid())
+        r = form.save()
+        self.assertIsInstance(r, Result)
+        self.assertEqual(r.value, 200)
+        self.assertEqual(r.id, 1)
+        self.assertEqual(r.error, None)
 
 class ResultModelTest(TestCase):
 
