@@ -23,6 +23,8 @@ class Math(models.Model):
     def __str__(self):
         return f"id:{self.id}, a={self.a}, b={self.b}, op={self.operation}"
 
+    class Meta:
+        ordering = ["-id"]
 
 class Result(models.Model):
     value = models.FloatField(blank=True, null=True, unique=True)
