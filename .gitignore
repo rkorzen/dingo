@@ -50,5 +50,8 @@ db.sqlite3
 # Sphinx documentation
 docs/_build/
 
+# MacOs staff:
+.DS_Store
+
 # PyCharm staff:
 .idea/
