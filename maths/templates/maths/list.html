@@ -3,12 +3,18 @@
 {% block title %}Maths list{% endblock %}
 
 {% block content %}
+    <div class="search">
+        <form>
+            <label for="operation">Operacja</label>
+            <input type="text" id="operation" name="operation">
+            <input type="submit" value="szukaj">
+        </form>
+    </div>
     <ul>
         {% for m in maths %}
             <li><a href="{% url "maths:details" m.id %}">{{ m }}</a></li>
         {% endfor %}
     </ul>
-
     <div class="pagination">
     <span class="step-links">
         {% if maths.has_previous %}

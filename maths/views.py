@@ -57,7 +57,11 @@ def div(request, a, b):
 
 
 def maths_list(request):
-    maths = Math.objects.all()
+    operation = request.GET.get('operation')
+    if operation:
+        maths = Math.objects.filter(operation=operation)
+    else:
+        maths = Math.objects.all()
     paginator = Paginator(maths, 5)
     page_number = request.GET.get('page')
     maths = paginator.get_page(page_number)
