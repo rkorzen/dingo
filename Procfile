@@ -1,1 +1,1 @@
-web: gunicorn dingo.wsgi:app
+web: gunicorn dingo.wsgi:application
