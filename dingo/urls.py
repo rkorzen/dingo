@@ -16,9 +16,14 @@ Including another URLconf
 # dingo/urls.py
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import TemplateView
+
+from greetings.views import about, contact
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include("greetings.urls")),
     path('maths/', include("maths.urls")),
     path('posts/', include("posts.urls")),
+
 ]

@@ -2,21 +2,41 @@
 
 {% block title %}Posty{% endblock %}
 
-{% block content %}
-    <div>
-        <ul>
-            {% for p in posts %}
-                <li><a href="{% url "posts:details" p.id %}">{{ p.title }}</a></li>
-            {% endfor %}
-        </ul>
-    </div>
-    <div>
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Dodaj">
-        </form>
+{% load bootstrap4 %}
+{% load django_bootstrap_breadcrumbs %}
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb "posts" "posts:list" %}
+{% endblock %}
 
+{% block content %}
+    {% render_breadcrumbs %}
+    <div class="row">
+        <div class="col-6">
+            <table class="table">
+            <tr>
+                <th>Tytuł</th>
+                <th>Autor</th>
+                <th>Data</th>
+            </tr>
+                {% for p in posts %}
+                    <tr>
+                        <td><a href="{% url "posts:details" p.id %}">{{ p.title }}</a></td>
+                        <td>{{ p.author.nick }}</td>
+                        <td>{{ p.created }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="col-6">
+            <h2>Dodaj nowy</h2>
+            <form method="POST">
+                {% csrf_token %}
+                {% bootstrap_form form  %}
+                <input type="submit" value="Dodaj">
+            </form>
+
+        </div>
     </div>
 
 {% endblock %}

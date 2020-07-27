@@ -9,12 +9,19 @@ from maths.models import Math, Result
 
 
 def math(request):
-    return HttpResponse("Tu będzie matma")
+    return render(
+        request=request,
+        template_name="maths/main.html",
+        context={}
+    )
 
 
 def add(request, a, b):
     wynik = a + b
     c = {"a": a, "b": b, "operacja": "+", "wynik": wynik, "title": "dodawanie"}
+
+    result = Result.objects.get_or_create(value=wynik)[0]
+    Math.objects.create(operation='add', a=a, b=b, result=result)
     return render(
         request=request,
         template_name="maths/operation.html",
@@ -25,6 +32,8 @@ def add(request, a, b):
 def sub(request, a, b):
     wynik = a - b
     c = {"a": a, "b": b, "operacja": "-", "wynik": wynik, "title": "odejmowanie"}
+    result = Result.objects.get_or_create(value=wynik)[0]
+    Math.objects.create(operation='sub', a=a, b=b, result=result)
     return render(
         request=request,
         template_name="maths/operation.html",
@@ -35,6 +44,8 @@ def sub(request, a, b):
 def mul(request, a, b):
     wynik = a * b
     c = {"a": a, "b": b, "operacja": "*", "wynik": wynik, "title": "mnożenie"}
+    result = Result.objects.get_or_create(value=wynik)[0]
+    Math.objects.create(operation='mul', a=a, b=b, result=result)
     return render(
         request=request,
         template_name="maths/operation.html",
@@ -49,6 +60,12 @@ def div(request, a, b):
     else:
         wynik = a / b
     c = {"a": a, "b": b, "operacja": "/", "wynik": wynik, "title": "dzielenie"}
+    if wynik == "Error":
+        result = Result.objects.get_or_create(error=wynik)[0]
+    else:
+        result = Result.objects.get_or_create(value=wynik)[0]
+    Math.objects.create(operation='add', a=a, b=b, result=result)
+    Math.objects.create(operation='add', a=a, b=b, result=result)
     return render(
         request=request,
         template_name="maths/operation.html",
@@ -68,7 +85,7 @@ def maths_list(request):
     return render(
         request=request,
         template_name="maths/list.html",
-        context={"maths": maths}
+        context={"maths": maths, 'active': "maths"}
     )
 
 
@@ -77,7 +94,7 @@ def math_details(request, id):
     return render(
         request=request,
         template_name="maths/details.html",
-        context={"math": math}
+        context={"math": math, 'active': "maths"}
     )
 
 

@@ -28,7 +28,7 @@ def posts_list(request):
     return render(
         request=request,
         template_name="posts/list.html",
-        context={"posts": posts, "form": form}
+        context={"posts": posts, "form": form, 'active': 'posts'}
     )
 
 
@@ -37,7 +37,7 @@ def post_details(request, id):
     return render(
         request=request,
         template_name="posts/details.html",
-        context={"post": post}
+        context={"post": post, 'active':"posts"}
     )
 
 

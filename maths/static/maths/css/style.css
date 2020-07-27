@@ -2,3 +2,8 @@
 div#header {
     color: darkgray;
 }
+
+
+.navbar-brand img {
+    width: 200px;
+}
