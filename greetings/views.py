@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
+
 # Create your views here.
 
 def hello(request, name="World!"):
@@ -8,11 +9,19 @@ def hello(request, name="World!"):
 
 
 def about(request):
-    return HttpResponse("About me")
+    return render(
+        request=request,
+        template_name="greetings/about.html",
+        context={}
+    )
 
 
 def contact(request):
-    return HttpResponse("Contact")
+    return render(
+        request=request,
+        template_name="greetings/contact.html",
+        context={}
+    )
 
 
 def welcome(request):

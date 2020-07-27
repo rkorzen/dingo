@@ -1,4 +1,5 @@
 # maths/views.py
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -11,7 +12,7 @@ from maths.models import Math, Result
 def math(request):
     return render(
         request=request,
-        template_name="maths/main.html",
+        template_name="maths/../templates/main.html",
         context={}
     )
 
@@ -72,7 +73,7 @@ def div(request, a, b):
         context=c
     )
 
-
+@login_required
 def maths_list(request):
     operation = request.GET.get('operation')
     if operation:
