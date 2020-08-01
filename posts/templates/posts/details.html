@@ -15,5 +15,6 @@
     <p>
         {{ post.content }}
     </p>
+    <div><img src="{{ post.image.url }}"></div>
     <a href="{% url "posts:list" %}">back</a>
 {% endblock %}

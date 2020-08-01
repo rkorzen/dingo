@@ -31,7 +31,7 @@
         <div class="col-6">
             {% if perms.posts.add_post %}
             <h2>Dodaj nowy</h2>
-            <form method="POST">
+            <form method="POST" enctype='multipart/form-data'>
                 {% csrf_token %}
                 {% bootstrap_form form  %}
                 <input type="submit" value="Dodaj">
