@@ -1,1 +1,1 @@
-web: ding.wsgi:application
+web: dingo.wsgi:application
