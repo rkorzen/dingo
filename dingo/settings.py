@@ -15,18 +15,17 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '$*@0v8=ndpp9=-k6*7-aq^npdx#bj)(joy$@-5#(*o$03-+dh4'
+SECRET_KEY = os.environ.get("SECRET_KEY", '$*@0v8=ndpp9=-k6*7-aq^npdx#bj)(joy$@-5#(*o$03-+dh4')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = os.environ.get("DEBUG", False)
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'testserver']
-
 
 # Application definition
 
@@ -41,6 +40,7 @@ INSTALLED_APPS = [
 
     'bootstrap4',
     'django_bootstrap_breadcrumbs',
+    'rest_framework',
 
     'maths',
     'posts',
@@ -77,7 +77,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'dingo.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
@@ -87,7 +86,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -107,7 +105,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -121,11 +118,11 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 LOGOUT_REDIRECT_URL = "/"
 LOGIN_REDIRECT_URL = "/"

@@ -19,9 +19,12 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+from dingo.api import router
+
 urlpatterns = [
     path('grappelli/', include('grappelli.urls')),
     path('admin/', admin.site.urls),
+    path('api/v1/', include(router.urls)),
     path('', include("greetings.urls")),
     path('maths/', include("maths.urls")),
     path('posts/', include("posts.urls")),

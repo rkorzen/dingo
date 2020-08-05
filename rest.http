@@ -1,0 +1,17 @@
+GET localhost:8000/api/v1/
+Content-Type: application/json
+
+###
+
+POST localhost:8000/api/v1/posts/
+Content-Type: application/json
+
+{
+    "title": "Życie bez DRF to dramat!",
+    "content": "Jak ja sobie radziłem bez tego?",
+    "author": 1,
+    "image": null,
+    "tags": [
+        1
+    ]
+}
