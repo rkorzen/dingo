@@ -26,3 +26,6 @@ class Author(models.Model):
 class Tag(models.Model):
     word = models.CharField(max_length=50, unique=True)
     created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.word
