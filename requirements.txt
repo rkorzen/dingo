@@ -9,3 +9,4 @@ django_bootstrap_breadcrumbs
 djangorestframework
 django_heroku
 gunicorn
+dj-static
